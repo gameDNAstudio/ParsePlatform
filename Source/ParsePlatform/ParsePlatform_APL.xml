@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+    Parse Platform Plugin
+    Created by Patryk Stepniewski
+    Copyright (c) 2014-2016 gameDNA studio. All Rights Reserved.
+-->
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+	<init>
+		<log text="ParsePlatform init"/>
+    <setStringFromProperty result="ParseApplicationId" ini="Engine" section="/Script/ParsePlatform.ParsePlatformSettings" property="ApplicationId" default=""/>
+    <setStringFromProperty result="ParseClientKey" ini="Engine" section="/Script/ParsePlatform.ParsePlatformSettings" property="ClientKey" default=""/>
+    <setStringFromProperty result="PackageName" ini="Engine" section="/Script/AndroidRuntimeSettings.AndroidRuntimeSettings" property="PackageName" default=""/>
+  </init>
+  
+  <proguardAdditions>
+    <insert>
+      ########################################################################################## Parse
+      -keep class com.parse.** { *; }
+      -keepattributes *Annotation*
+      -keepattributes Signature
+      -dontwarn com.squareup.**
+      -dontwarn okio.**
+
+      ########################################################################################## Bolts
+      -keep class bolts.*
+
+      ########################################################################################## Google Play Services
+      -keep class com.google.android.gms.** { *; }
+      -dontwarn com.google.android.gms.**
+
+      ########################################################################################## Android Support Library
+      -dontnote android.support.**
+      -dontwarn org.apache.http.**
+    </insert>
+  </proguardAdditions>
+  
+  <resourceCopies>
+    <copyDir src="$S(PluginDir)/../../ThirdPartyLibraries/Android"
+					dst="$S(BuildDir)" />
+  </resourceCopies>
+  
+	<gameActivityImportAdditions>
+    <insert>
+      // Parse
+      import com.parse.Parse;
+      import com.parse.ParsePush;
+      import com.parse.ParseInstallation;
+    </insert>
+	</gameActivityImportAdditions>
+
+  <androidManifestUpdates>
+    <addAttribute tag="application" name="android:name" value="com.epicgames.ue4.ParseApplication"/>
+    <addElements tag="manifest">
+      <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+      <permission android:protectionLevel="signature" PackageName="true" />
+      <uses-permission PackageName="true" />
+    </addElements>
+
+    <addElements tag="application">
+      <meta-data android:name="com.epicgames.ue4.GameActivity.ParseApplicationId" />
+      <meta-data android:name="com.epicgames.ue4.GameActivity.ParseClientKey" />
+
+      <service android:name="com.parse.PushService" />
+      <receiver android:name="com.parse.ParseBroadcastReceiver">
+        <intent-filter>
+          <action android:name="android.intent.action.BOOT_COMPLETED" />
+          <action android:name="android.intent.action.USER_PRESENT" />
+        </intent-filter>
+      </receiver>
+      <receiver android:name="com.epicgames.ue4.ParsePushReceiver" android:exported="false">
+        <intent-filter>
+          <action android:name="com.parse.push.intent.RECEIVE" />
+          <action android:name="com.parse.push.intent.DELETE" />
+          <action android:name="com.parse.push.intent.OPEN" />
+        </intent-filter>
+      </receiver>
+      <receiver android:name="com.parse.GcmBroadcastReceiver"
+          android:permission="com.google.android.c2dm.permission.SEND">
+        <intent-filter>
+          <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+          <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+          <category PackageName="true" />
+        </intent-filter>
+      </receiver>
+    </addElements>
+    
+    <loopElements tag="meta-data">
+      <setStringFromAttribute result="metaDataName" tag="$" name="android:name"/>
+      <setBoolIsEqual result="bParseApplicationId" arg1="$S(metaDataName)" arg2="com.epicgames.ue4.GameActivity.ParseApplicationId"/>
+      <setBoolIsEqual result="bParseClientKey" arg1="$S(metaDataName)" arg2="com.epicgames.ue4.GameActivity.ParseClientKey"/>
+      <if condition="bParseApplicationId">
+        <true>
+          <addAttribute tag="$" name="android:value" value="$S(ParseApplicationId)"/>
+        </true>
+      </if>
+      <if condition="bParseClientKey">
+        <true>
+          <addAttribute tag="$" name="android:value" value="$S(ParseClientKey)"/>
+        </true>
+      </if>
+    </loopElements>
+    
+    <loopElements tag="category">
+      <setStringFromAttribute result="mockPackageName" tag="$" name="PackageName"/>
+      <setBoolIsEqual result="bMockPackageName" arg1="$S(mockPackageName)" arg2="true"/>
+      <if condition="bMockPackageName">
+        <true>
+          <addAttribute tag="$" name="android:name" value="$S(PackageName)"/>
+          <removeAttribute tag="$" name="PackageName"/>
+        </true>
+      </if>
+    </loopElements>
+
+    <loopElements tag="permission">
+      <setStringFromAttribute result="mockPackageName" tag="$" name="PackageName"/>
+      <setBoolIsEqual result="bMockPackageName" arg1="$S(mockPackageName)" arg2="true"/>
+      <if condition="bMockPackageName">
+        <true>
+          <addAttribute tag="$" name="android:name" value="$S(PackageName).permission.C2D_MESSAGE"/>
+          <removeAttribute tag="$" name="PackageName"/>
+        </true>
+      </if>
+    </loopElements>
+
+    <loopElements tag="uses-permission">
+      <setStringFromAttribute result="mockPackageName" tag="$" name="PackageName"/>
+      <setBoolIsEqual result="bMockPackageName" arg1="$S(mockPackageName)" arg2="true"/>
+      <if condition="bMockPackageName">
+        <true>
+          <addAttribute tag="$" name="android:name" value="$S(PackageName).permission.C2D_MESSAGE"/>
+          <removeAttribute tag="$" name="PackageName"/>
+        </true>
+      </if>
+    </loopElements>
+  </androidManifestUpdates>
+
+  <gameActivityClassAdditions>
+    <insert>  
+      public String AndroidThunkJava_GetParseInstallationId()
+	    {
+		      return ParseInstallation.getCurrentInstallation().getInstallationId();
+	    }
+      
+      public void AndroidThunkJava_ParseSubscribeToChannel(String ChannelName)
+	    {
+          ParsePush.subscribeInBackground(ChannelName);
+      }
+      
+      public void AndroidThunkJava_ParseUnsubscribeFromChannel(String ChannelName)
+	    {
+          ParsePush.unsubscribeInBackground(ChannelName);
+      }
+    </insert>
+  </gameActivityClassAdditions>
+</root>

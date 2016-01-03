@@ -1,0 +1,25 @@
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "Parse Platform",
+  "Description": "Installation Tracking and Push Notifications",
+  "Category": "Messaging",
+  "CreatedBy": "gameDNA studio",
+  "CreatedByURL": "http://gamednastudio.com",
+  "DocsURL": "https://github.com/gameDNAstudio/ParsePlatform",
+  "MarketplaceURL": "",
+  "EngineVersion": "4.10.0",
+  "SupportURL": "mailto:support@gamednastudio.com",
+  "Modules": [
+    {
+      "Name": "ParsePlatform",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "EnabledByDefault": true,
+  "CanContainContent": false,
+  "IsBetaVersion": false,
+  "Installed": false
+}
