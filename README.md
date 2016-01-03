@@ -17,16 +17,16 @@ The **Parse Platform** plugin lets you integrate out-of-the-box [Parse.com](http
 * All features are exposed to Blueprints
 
 ## Setup
-1. Copy this folder to the *Plugins* folder located in the main path of your project.
+Copy this folder to the *Plugins* folder located in the main path of your project.
 
 ![CopyFiles](Resources/CopyFiles.png)
 
-2. Enable *Parse Platform* in *Edit -> Plugins -> Messaging -> Parse Platform*.
+Enable *Parse Platform* in *Edit -> Plugins -> Messaging -> Parse Platform*.
 
 ![EnablePlugin](Resources/EnablePlugin.png)
 
-3. Go to *Project Settings -> Plugins -> Parse Platform* and then enter *Application ID* and *Client Key*.
+Go to *Project Settings -> Plugins -> Parse Platform* and then enter *Application ID* and *Client Key*.
 
 ![Settings](Resources/Settings.png)
 
-4. That's all! Parse Platform works now! :) All devices will be registered on [Parse.com](http://parse.com) and you will be able to send push notifications.
+That's all! *Parse Platform* works now! :) All devices will be registered on [Parse.com](http://parse.com) and you will be able to send push notifications.
