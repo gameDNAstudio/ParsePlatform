@@ -65,9 +65,9 @@ FString UParsePlatformBlueprintLibrary::GetParseInstallationId() {
 	return FString([Installation installationId]);
 #elif PLATFORM_ANDROID
 	return AndroidThunkCpp_GetParseInstallationId();
-#endif
-
+#else
 	return FString("");
+#endif
 }
 
 // Subscribe To Channel
