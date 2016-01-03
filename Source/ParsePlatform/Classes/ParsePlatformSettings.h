@@ -10,10 +10,10 @@ UCLASS(config = Engine, defaultconfig)
 class UParsePlatformSettings : public UObject
 {
 	GENERATED_BODY()
-	
+
 public:
 	UParsePlatformSettings(const FObjectInitializer& ObjectInitializer);
-	
+
 	// Application ID
 	UPROPERTY(Config, EditAnywhere, Category = "Parse Platform Configuration", meta = (DisplayName = "Application ID"))
 	FString ApplicationId;

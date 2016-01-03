@@ -6,12 +6,12 @@
 #include "ParsePlatformBlueprintLibrary.h"
 
 #if PLATFORM_IOS
-	#import <Parse/Parse.h>
-	#import "IOSAppDelegate.h"
+#import <Parse/Parse.h>
+#import "IOSAppDelegate.h"
 #elif PLATFORM_ANDROID
-	#include "Android/AndroidJNI.h"
-	#include "Android/AndroidApplication.h"
-	#include <android_native_app_glue.h>
+#include "Android/AndroidJNI.h"
+#include "Android/AndroidApplication.h"
+#include <android_native_app_glue.h>
 #endif
 
 #if PLATFORM_ANDROID
@@ -74,9 +74,9 @@ FString UParsePlatformBlueprintLibrary::GetParseInstallationId() {
 void UParsePlatformBlueprintLibrary::SubscribeToChannel(FString ChannelName) {
 	if (ChannelName.Len() > 0) {
 #if PLATFORM_IOS
-	[PFPush subscribeToChannelInBackground : ChannelName.GetNSString()];
+		[PFPush subscribeToChannelInBackground : ChannelName.GetNSString()];
 #elif PLATFORM_ANDROID
-	AndroidThunkCpp_ParseSubscribeToChannel(ChannelName);
+		AndroidThunkCpp_ParseSubscribeToChannel(ChannelName);
 #endif
 	}
 }

@@ -8,36 +8,36 @@ namespace UnrealBuildTool.Rules
 {
 	public class ParsePlatform : ModuleRules
 	{
-        private string ModulePath
-        {
-            get { return Path.GetDirectoryName(RulesCompiler.GetModuleFilename(this.GetType().Name)); }
-        }
-
-        public ParsePlatform(TargetInfo Target)
+		private string ModulePath
 		{
-            Definitions.Add("WITH_PARSEPLATFORM=1");
+			get { return Path.GetDirectoryName(RulesCompiler.GetModuleFilename(this.GetType().Name)); }
+		}
+
+		public ParsePlatform(TargetInfo Target)
+		{
+			Definitions.Add("WITH_PARSEPLATFORM=1");
 
 			PublicDependencyModuleNames.AddRange(new string[] { "Engine", "Core", "CoreUObject" });
 			PrivateIncludePathModuleNames.AddRange(new string[] { "Settings" });
 
-            // Additional Frameworks and Libraries for iOS
-            if (Target.Platform == UnrealTargetPlatform.IOS)
-            {
-                PublicAdditionalFrameworks.Add(
+			// Additional Frameworks and Libraries for iOS
+			if (Target.Platform == UnrealTargetPlatform.IOS)
+			{
+				PublicAdditionalFrameworks.Add(
 					new UEBuildFramework(
 						"Parse",
-                        "../../ThirdPartyLibraries/iOS/Parse.embeddedframework.zip"
-                    )
+						"../../ThirdPartyLibraries/iOS/Parse.embeddedframework.zip"
+					)
 				);
 
-                PublicAdditionalFrameworks.Add(
-                   new UEBuildFramework(
-                       "Bolts",
-                       "../../ThirdPartyLibraries/iOS/Bolts.embeddedframework.zip"
-                   )
-                );
+				PublicAdditionalFrameworks.Add(
+				   new UEBuildFramework(
+					   "Bolts",
+					   "../../ThirdPartyLibraries/iOS/Bolts.embeddedframework.zip"
+				   )
+				);
 
-                PublicFrameworks.AddRange(
+				PublicFrameworks.AddRange(
 					new string[]
 					{
 						"Accounts",
@@ -54,16 +54,16 @@ namespace UnrealBuildTool.Rules
 					}
 				);
 
-                PublicAdditionalLibraries.Add("z");
-                PublicAdditionalLibraries.Add("sqlite3");
+				PublicAdditionalLibraries.Add("z");
+				PublicAdditionalLibraries.Add("sqlite3");
 			}
-            // Additional Frameworks and Libraries for Android
-            else if (Target.Platform == UnrealTargetPlatform.Android)
-            {
-                PrivateDependencyModuleNames.AddRange(new string[] { "Launch" });
-                string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, BuildConfiguration.RelativeEnginePath);
-                AdditionalPropertiesForReceipt.Add(new ReceiptProperty("AndroidPlugin", Path.Combine(PluginPath, "ParsePlatform_APL.xml")));
-            }
-        }
+			// Additional Frameworks and Libraries for Android
+			else if (Target.Platform == UnrealTargetPlatform.Android)
+			{
+				PrivateDependencyModuleNames.AddRange(new string[] { "Launch" });
+				string PluginPath = Utils.MakePathRelativeTo(ModuleDirectory, BuildConfiguration.RelativeEnginePath);
+				AdditionalPropertiesForReceipt.Add(new ReceiptProperty("AndroidPlugin", Path.Combine(PluginPath, "ParsePlatform_APL.xml")));
+			}
+		}
 	}
 }

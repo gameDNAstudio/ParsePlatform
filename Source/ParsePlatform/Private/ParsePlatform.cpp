@@ -9,8 +9,8 @@
 #include "Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h"
 
 #if PLATFORM_IOS
-	#import <Parse/Parse.h>
-	#import "IOSAppDelegate.h"
+#import <Parse/Parse.h>
+#import "IOSAppDelegate.h"
 #endif
 
 DEFINE_LOG_CATEGORY(LogParsePlatform);
@@ -26,13 +26,13 @@ class FParsePlatform : public IParsePlatform
 	void ApplicationReceivedRemoteNotification_Handler(FString Json);
 };
 
-IMPLEMENT_MODULE( FParsePlatform, ParsePlatform )
+IMPLEMENT_MODULE(FParsePlatform, ParsePlatform)
 
 // Startup Module
 void FParsePlatform::StartupModule()
 {
 	const UParsePlatformSettings* DefaultSettings = GetDefault<UParsePlatformSettings>();
-	
+
 	// Register settings
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
 	{

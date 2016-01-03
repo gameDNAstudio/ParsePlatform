@@ -6,8 +6,8 @@
 #include "ParsePlatformSettings.h"
 
 UParsePlatformSettings::UParsePlatformSettings(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
-, ApplicationId("")
-, ClientKey("")
+	: Super(ObjectInitializer)
+	, ApplicationId("")
+	, ClientKey("")
 {
 }

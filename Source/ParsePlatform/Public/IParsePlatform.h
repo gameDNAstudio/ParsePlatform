@@ -11,11 +11,11 @@ class IParsePlatform : public IModuleInterface
 public:
 	static inline IParsePlatform& Get()
 	{
-		return FModuleManager::LoadModuleChecked< IParsePlatform >( "ParsePlatform" );
+		return FModuleManager::LoadModuleChecked< IParsePlatform >("ParsePlatform");
 	}
 
 	static inline bool IsAvailable()
 	{
-		return FModuleManager::Get().IsModuleLoaded( "ParsePlatform" );
+		return FModuleManager::Get().IsModuleLoaded("ParsePlatform");
 	}
 };
