@@ -15,6 +15,8 @@ The **Parse Platform** plugin lets you integrate out-of-the-box [Parse.com](http
 * No additional libraries are needed
 * Native implementation dedicated to specified platforms
 * All features are exposed to Blueprints
+* Works with Blueprint-only & source code projects
+* Works with Launcher & GitHub UE4 versions
 
 ## Setup
 Copy this folder to the *Plugins* folder located in the main path of your project.
