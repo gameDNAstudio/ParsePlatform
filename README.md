@@ -4,8 +4,8 @@
 
 The **Parse Platform** plugin lets you integrate out-of-the-box [Parse.com](http://parse.com) native features into your [Unreal Engine 4](http://www.unrealengine.com) project (compatible with iOS & Android).
 
-* **Current version:** 1.0
-* **Binaries compiled for:** Unreal Engine 4.10.1
+* **Current version:** 1.1
+* **Binaries compiled for:** Unreal Engine 4.11.0 Preview 3
 * **Required Unreal Engine 4.10 or above.**
 
 ## Features
