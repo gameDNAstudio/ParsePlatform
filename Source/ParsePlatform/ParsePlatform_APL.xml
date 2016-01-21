@@ -138,17 +138,17 @@
 	<insert>
 	  public String AndroidThunkJava_GetParseInstallationId()
 	  {
-		return ParseInstallation.getCurrentInstallation().getInstallationId();
+	  return ParseInstallation.getCurrentInstallation().getInstallationId();
 	  }
 
 	  public void AndroidThunkJava_ParseSubscribeToChannel(String ChannelName)
 	  {
-		ParsePush.subscribeInBackground(ChannelName);
+	  ParsePush.subscribeInBackground(ChannelName);
 	  }
 
 	  public void AndroidThunkJava_ParseUnsubscribeFromChannel(String ChannelName)
 	  {
-		ParsePush.unsubscribeInBackground(ChannelName);
+	  ParsePush.unsubscribeInBackground(ChannelName);
 	  }
 	</insert>
   </gameActivityClassAdditions>

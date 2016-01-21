@@ -8,11 +8,6 @@ namespace UnrealBuildTool.Rules
 {
 	public class ParsePlatform : ModuleRules
 	{
-		private string ModulePath
-		{
-			get { return Path.GetDirectoryName(RulesCompiler.GetModuleFilename(this.GetType().Name)); }
-		}
-
 		public ParsePlatform(TargetInfo Target)
 		{
 			Definitions.Add("WITH_PARSEPLATFORM=1");
