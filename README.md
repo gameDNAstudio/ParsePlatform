@@ -32,3 +32,5 @@ Go to *Project Settings -> Plugins -> Parse Platform* and then enter *Applicatio
 ![Settings](Resources/Settings.png)
 
 That's all! *Parse Platform* works now! :) All devices will be registered on [Parse.com](http://parse.com) and you will be able to send push notifications.
+
+Plugin icon designed by _Freepik_.
