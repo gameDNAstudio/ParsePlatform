@@ -1,8 +1,8 @@
-![Splash](Resources/Splash.png)
-
 # PLUGIN IS DEPRECATED
 
 If you need similar functionalities to Parse Platform, learn more about the [Ultimate Mobile Kit Plugin](https://forums.unrealengine.com/showthread.php?138716-Ultimate-Mobile-Kit-for-iOS-amp-Android-Firebase)
+
+![Splash](Resources/Splash.png)
 
 # Parse Platform
 
