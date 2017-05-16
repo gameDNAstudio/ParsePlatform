@@ -1,5 +1,9 @@
 ![Splash](Resources/Splash.png)
 
+# PLUGIN IS DEPRECATED
+
+If you need similar functionalities to Parse Platform, learn more about the [Ultimate Mobile Kit Plugin](https://forums.unrealengine.com/showthread.php?138716-Ultimate-Mobile-Kit-for-iOS-amp-Android-Firebase)
+
 # Parse Platform
 
 The **Parse Platform** plugin lets you integrate out-of-the-box [Parse.com](http://parse.com) native features into your [Unreal Engine 4](http://www.unrealengine.com) project (compatible with iOS & Android).
